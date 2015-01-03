@@ -1,10 +1,11 @@
 <?php
+class Artist extends Model {
 
-class artist extends Model
-{
-    private $id;
+	var $table = 'artist';
+    public $id;
     private $firstname;
     private $lastname;
+
 
     public function getId()
     {

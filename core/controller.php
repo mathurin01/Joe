@@ -1,14 +1,14 @@
 <?php
-class controller {
+class Controller {
 
 	var $vars = array();
 	var $layout = 'default';
 
-	function set($d){
+	public function set($d){
 		$this->vars = array_merge($this->vars, $d);
 	}
 
-	function render($filename){
+	public function render($filename){
 		extract($this->vars);
 		ob_start();
 		require(ROOT.'views/'.get_class($this).'/'.$filename.'.php');
@@ -18,6 +18,11 @@ class controller {
 		} else {
 			require(ROOT.'views/layout/'.$this->layout.'.php');
 		}
+	}
+
+	public function loadModel($name) {
+		require_once(ROOT.'models/'.strtolower($name).'.php');
+		$this->$name = new $name();
 	}
 }
 ?>

@@ -1,6 +1,5 @@
 <?php
-class artists extends controller{
-
+class Artists extends Controller{
 
 	function index(){
 		$d = array();
