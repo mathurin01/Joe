@@ -1,9 +1,9 @@
 <?php
 
 /*
-*	Classe Music, héritant de la classe Model
+*	Classe Music, hÃ©ritant de la classe Model
 *	Contient les Getters et Setters de la table correspondante
-* 	Contient également une fonction, propre à la classe, permettant l'affichage des morceaux Et des albums dans lesquelles ils apparaissent
+* 	Contient Ã©galement une fonction, propre Ã  la classe, permettant l'affichage des morceaux Et des albums dans lesquelles ils apparaissent
 */
 
 class Music extends model

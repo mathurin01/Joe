@@ -27,7 +27,7 @@
 		<?php if(isset($album) and !empty($album)){ ?>
 			<h4>Le mot <b><?php echo $_POST['find'] ?></b> est présent sur le titre d'un album</h4>
 			<?php foreach($album as $a){ ?>
-				<h2><?php //echo $a['Title']; ?>
+				<h2>
 				<?php echo str_replace($_POST['find'], '<b>'.$_POST['find'].'</b>', $a['Title']); ?>
 				</h2><p> album sorti le <?php $formatter = new IntlDateFormatter('fr_FR',IntlDateFormatter::LONG,
 						IntlDateFormatter::NONE,
@@ -35,9 +35,7 @@
 						IntlDateFormatter::GREGORIAN );
 					$date =new DateTime($a['Releasedate']);
 					echo $formatter->format($date); ?><p>
-			<?php } ?>
-			
-			
+			<?php } ?>			
 		<?php } ?>
 		<hr />
 		<?php if(isset($music) and !empty($music)){ ?>

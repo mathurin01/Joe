@@ -1,9 +1,9 @@
 <?php
 
 /*
-*	Classe artists, héritant de la classe Controller
-*	Permet l'affichage des différents artistes de la base
-*	- non utilisé actuellement
+*	Classe artists, hÃ©ritant de la classe Controller
+*	Permet l'affichage des diffÃ©rents artistes de la base
+*	- non utilisÃ© actuellement
 */
 
 class Artists extends Controller{

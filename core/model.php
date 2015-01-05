@@ -2,8 +2,8 @@
 
 /*
 *	Classe Model
-*	Permet de gérer les requètes communes à chaque classe (read, save et find)
-* 	Quelques requètes 
+*	Permet de gÃ©rer les requÃ¨tes communes Ã  chaque classe (read, save et find)
+* 	Quelques requÃ¨tes 
 */
 
 class Model{

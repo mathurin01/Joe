@@ -8,11 +8,8 @@
 	
 	
 <div class="container">
-<?php //var_dump($album); $ii = 0;?>
-<?php //var_dump($music); ?>
 	<?php foreach($music as $m){ ?>
 		<p><b><?php echo $m['music']; ?></b>
-		<?php //foreach($album as $a){ ?>
 			 <i>tiré de l'album <?php echo $m['Title']; ?></i></p>	
 		<?php //} ?>
 	<?php } ?>

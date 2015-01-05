@@ -1,7 +1,7 @@
 <?php
 
 /*
-*	Classe albums, héritant de la classe Controller
+*	Classe albums, hÃ©ritant de la classe Controller
 *	Permet l'affichage de la liste des albums
 */
 

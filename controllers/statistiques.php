@@ -1,8 +1,8 @@
 <?php
 
 /*
-*	Classe statitiques, héritant de la classe Controller
-*	Permet l'affichage de quelques statistiques liées au fichier
+*	Classe statitiques, hÃ©ritant de la classe Controller
+*	Permet l'affichage de quelques statistiques liÃ©es au fichier
 */
 
 class Statistiques extends Controller

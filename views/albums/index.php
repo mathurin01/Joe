@@ -7,7 +7,6 @@
 </div>
 	
 <div class="container">
-<?php //var_dump($album); ?>
 	<?php foreach($album as $a){ ?>
 		<h2><?php echo $a['Title']; ?></h2>
 		<p> album sorti le <?php $formatter = new IntlDateFormatter('fr_FR',IntlDateFormatter::LONG,

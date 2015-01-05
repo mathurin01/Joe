@@ -1,7 +1,7 @@
 <?php
 
 /*
-*	Classe accueil, héritant de la classe Controller
+*	Classe accueil, hÃ©ritant de la classe Controller
 *	Permet l'affichage de la page d'accueil
 */
 

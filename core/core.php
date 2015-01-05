@@ -1,7 +1,7 @@
 <?php
 
 /*
-*	Fichier d'inclusion générale des modèles utilisés dans l'application
+*	Fichier d'inclusion gÃ©nÃ©rale des modÃ¨les utilisÃ©s dans l'application
 */
 
 	require("models/artist.php");

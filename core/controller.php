@@ -2,9 +2,9 @@
 
 /*
 *	Classe Controlleur
-*	Permet l'affichage des pages avec transmission de paramètres à la vue
-*	cette vue est intégrée à un layout générale
-*	L'instanciation "automatique" de la classe appelée
+*	Permet l'affichage des pages avec transmission de paramÃ¨tres Ã  la vue
+*	cette vue est intÃ©grÃ©e Ã  un layout gÃ©nÃ©rale
+*	L'instanciation "automatique" de la classe appelÃ©e
 */
 
 class Controller {

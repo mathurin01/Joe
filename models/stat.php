@@ -1,9 +1,9 @@
 <?php
 
 /*
-*	Classe Stat, héritant de la classe Model
-*	Ne contient pas de Getters et Setters car cette classe n'est liée à aucune table
-*	contient un fonction recherchant les morceaux publiés dans différents albums
+*	Classe Stat, hÃ©ritant de la classe Model
+*	Ne contient pas de Getters et Setters car cette classe n'est liÃ©e Ã  aucune table
+*	contient un fonction recherchant les morceaux publiÃ©s dans diffÃ©rents albums
 */
 
 class Stat extends model

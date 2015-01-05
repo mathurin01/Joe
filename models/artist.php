@@ -1,7 +1,7 @@
 <?php
 
 /*
-*	Classe Artist, héritant de la classe Model
+*	Classe Artist, hÃ©ritant de la classe Model
 *	Contient les Getters et Setters de la table correspondante
 */
 

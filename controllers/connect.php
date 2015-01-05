@@ -1,12 +1,12 @@
 <?php
 
 /*
-*	Classe connect, héritant de la classe Controller
-*	Permet le contrôle de la connexion à la bdd et l'insertion des données
+*	Classe connect, hÃ©ritant de la classe Controller
+*	Permet le contrÃ´le de la connexion Ã  la bdd et l'insertion des donnÃ©es
 *	
-*	Les paramètres de connexion doivent se trouver dans le fichier doc/parameters.txt
+*	Les paramÃ¨tres de connexion doivent se trouver dans le fichier doc/parameters.txt
 *	si le fichier est vide, on affiche un formulaire de saisie
-*	sinon on se connecte à la base et on y insère les données.
+*	sinon on se connecte Ã  la base et on y insÃ¨re les donnÃ©es.
 *	
 */
 
@@ -31,8 +31,7 @@ class Connect extends Controller{
 		catch(PDOException $e)
 		{
 			echo 'pas de connection';
-		}
-		
+		}		
 	}
 	
 	public function Connect()
@@ -47,8 +46,7 @@ class Connect extends Controller{
 		catch(PDOException $e)
 		{
 			echo 'pas de connection';
-		}
-		
+		}		
 	}
 	
 	public function paramsConnect()

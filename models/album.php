@@ -1,9 +1,9 @@
 <?php
 
 /*
-*	Classe Album, héritant de la classe Model
+*	Classe Album, hÃ©ritant de la classe Model
 *	Contient les Getters et Setters de la table correspondante
-* 	Contient également une fonction, propre à la classe, permettant l'affichage des n derniers albums
+* 	Contient Ã©galement une fonction, propre Ã  la classe, permettant l'affichage des n derniers albums
 */
 
 class Album extends Model

@@ -1,9 +1,9 @@
 <?php
 
 /*
-*	Classe Search, héritant de la classe Model
-*	Ne contient pas de Getters et Setters car cette classe n'est liée à aucune table
-*	Contient quelques requètes de recherche.
+*	Classe Search, hÃ©ritant de la classe Model
+*	Ne contient pas de Getters et Setters car cette classe n'est liÃ©e Ã  aucune table
+*	Contient quelques requÃ¨tes de recherche.
 */
 
 class Search extends model

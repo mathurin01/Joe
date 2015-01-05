@@ -1,7 +1,7 @@
 <?php
 
 /*
-*	Classe recherche, héritant de la classe Controller
+*	Classe recherche, hÃ©ritant de la classe Controller
 *	Permet d'effectuer une recherche sur un mot ou ensemble de mot 
 *	dans les colonnes 'Title' de la table album
 *	et 'Title' de la table music
