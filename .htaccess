@@ -1,3 +1,6 @@
+AuthName "Page protégée par mot de passe"
+AuthType Basic
+AuthUserFile "C:/xampp/htdocs/Joe/.htpasswd"
+Require valid-user
 RewriteEngine on
 RewriteRule ^([a-zA-Z0-9\-\_\/]*)$ index.php?p=$1
-

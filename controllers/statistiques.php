@@ -1,4 +1,10 @@
 <?php
+
+/*
+*	Classe statitiques, héritant de la classe Controller
+*	Permet l'affichage de quelques statistiques liées au fichier
+*/
+
 class Statistiques extends Controller
 {	
 	var $table = 'music';

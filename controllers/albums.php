@@ -1,4 +1,10 @@
 <?php
+
+/*
+*	Classe albums, héritant de la classe Controller
+*	Permet l'affichage de la liste des albums
+*/
+
 class albums extends Controller{
 
 	function index(){

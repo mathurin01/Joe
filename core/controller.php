@@ -1,4 +1,12 @@
 <?php
+
+/*
+*	Classe Controlleur
+*	Permet l'affichage des pages avec transmission de paramètres à la vue
+*	cette vue est intégrée à un layout générale
+*	L'instanciation "automatique" de la classe appelée
+*/
+
 class Controller {
 
 	var $vars = array();

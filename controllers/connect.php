@@ -1,4 +1,15 @@
 <?php
+
+/*
+*	Classe connect, héritant de la classe Controller
+*	Permet le contrôle de la connexion à la bdd et l'insertion des données
+*	
+*	Les paramètres de connexion doivent se trouver dans le fichier doc/parameters.txt
+*	si le fichier est vide, on affiche un formulaire de saisie
+*	sinon on se connecte à la base et on y insère les données.
+*	
+*/
+
 class Connect extends Controller{
 
 	public function __construct()
@@ -11,11 +22,10 @@ class Connect extends Controller{
 		$params = array();
 		$params = $this->paramsConnect();
 		if($params['host'] == '') return false;
-		//var_dump($params);
 		try
 		{
 			$DB = new PDO('mysql:host='.$params['host'].';dbname='.$params['bdname'],$params['login'],$params['mdp']);
-			$DB->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
+			//$DB->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
 			return true;
 		}
 		catch(PDOException $e)
@@ -24,17 +34,15 @@ class Connect extends Controller{
 		}
 		
 	}
+	
 	public function Connect()
 	{
 		$params = array();
 		$params = $this->paramsConnect();
 		if($params['host'] == '') return false;
-		//var_dump($params);
 		try
 		{
 			return $DB = new PDO('mysql:host='.$params['host'].';dbname='.$params['bdname'],$params['login'],$params['mdp']);
-			//$DB->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
-			//return true;
 		}
 		catch(PDOException $e)
 		{
@@ -70,101 +78,95 @@ class Connect extends Controller{
 	
 	public function index()
 	{
-		//if(isset($_POST['bdname']) and isset($_POST['login']))
-		//{
-			$fic=fopen("doc/parameters.txt", "r+");
-			$_POST['host'] != '' ? $host = $_POST['host'] : $host = 'localhost';
-			fputs($fic, $host.'/'.$_POST['bdname'].'/'.$_POST['login'].'/'.$_POST['mdp']); 
-			fclose($fic);
-			$bdname = $_POST['bdname'];
-			$login = $_POST['login'];
-			$mdp = $_POST['mdp'];
-			try
+		$fic=fopen("doc/parameters.txt", "r+");
+		$_POST['host'] != '' ? $host = $_POST['host'] : $host = 'localhost';
+		fputs($fic, $host.'/'.$_POST['bdname'].'/'.$_POST['login'].'/'.$_POST['mdp']); 
+		fclose($fic);
+		$bdname = $_POST['bdname'];
+		$login = $_POST['login'];
+		$mdp = $_POST['mdp'];
+		try
+		{
+			$DB = new PDO('mysql:host='.$host.';dbname='.$bdname,$login,$mdp);
+			$DB->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
+			define('BDNAME',$bdname);
+			$sql = $this->reqCreatBdd();
+			$DB->exec($sql);
+			
+			$i=1 ;
+			$j=0;
+			
+			$fic=fopen("doc/joe.txt", "r+");
+			while(!feof($fic))
 			{
-				$DB = new PDO('mysql:host='.$host.';dbname='.$bdname,$login,$mdp);
-				$DB->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
-				define('BDNAME',$bdname);
-				$sql = $this->reqCreatBdd();
-				$DB->exec($sql);
-				
-				//$nblignes = sizeof(file("doc/joe.txt"));			
-				$i=1 ;
-				$j=0;
-				
-				$fic=fopen("doc/joe.txt", "r+");
-				while(!feof($fic))
+				$line= fgets($fic,1024);
+				$tab[$i] = $line;
+				if($i == 1) 
 				{
-					$line= fgets($fic,1024);
-					$tab[$i] = $line;
-					if($i == 1) 
+					$res = explode(' ',$line);
+					$firstname = $res[1];
+					$lastname = $res[2];
+				} else {
+					//if(preg_match("/((.)*\n{1,2})\s{0,2}sorti\sle:\s{0,1}([0-9]{2}\s{0,1}\/[0-9]{2}\s{0,1}\/[0-9]{4})/i", trim($line)))
+					if(preg_match("/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/i", trim($line)))
 					{
-						$res = explode(' ',$line);
-						$firstname = $res[1];
-						$lastname = $res[2];
-					} else {
-						//if(preg_match("/((.)*\n{1,2})\s{0,2}sorti\sle:\s{0,1}([0-9]{2}\s{0,1}\/[0-9]{2}\s{0,1}\/[0-9]{4})/i", trim($line)))
-						if(preg_match("/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/i", trim($line)))
+						$j++;
+						if (strlen($tab[$i-1]) == 2)
 						{
-							$j++;
-							if (strlen($tab[$i-1]) == 2)
-							{
-								$data[$j]['title'] = trim($tab[$i-2]);
-							} else {
-								$data[$j]['title'] = trim($tab[$i-1]);
-							}
-							$date = substr($line,-12);
-							$date = explode('/',$date);
-							$date = trim($date[2]).'-'.trim($date[1]).'-'.trim($date[0]);
-							$data[$j]['Releasedate'] = $date;
+							$data[$j]['title'] = trim($tab[$i-2]);
 						} else {
-							if (strlen($tab[$i]) != 2) // and $i != $nblignes
-							{
-								$music[$j]['title'][$i] = trim($line);
-							}
+							$data[$j]['title'] = trim($tab[$i-1]);
+						}
+						$date = substr($line,-12);
+						$date = explode('/',$date);
+						$date = trim($date[2]).'-'.trim($date[1]).'-'.trim($date[0]);
+						$data[$j]['Releasedate'] = $date;
+					} else {
+						if (strlen($tab[$i]) != 2)
+						{
+							$music[$j]['title'][$i] = trim($line);
 						}
 					}
-					$i ++;
 				}
-				$nb = $i;
-				$nbalbum = $j;
-				fclose($fic);
-				
-				$artist = array($firstname, $lastname);
-				$req0 = $DB->prepare('INSERT INTO '.BDNAME.'.artist (Firstname, Lastname) VALUES (?, ?)');
-				$req0->execute($artist);
-				$artistid = $DB->lastInsertId();
-				
-				for($k=1 ; $k <= $nbalbum ; $k++)
-				{
-					$req1 = $DB->prepare('INSERT INTO '.BDNAME.'.album (Title, Releasedate) VALUES (:title, :date)');
-					$req1->execute(array(
-						'title' => $data[$k]['title'],
-						'date' => date('Y-m-d', strtotime($data[$k]['Releasedate']))
-						));
-					$albumid = $DB->lastInsertId();
-					
-					$d2 = array($albumid, $artistid);
-					$req2 = $DB->prepare('INSERT INTO '.BDNAME.'.album_artist (album_id, artist_id) VALUES (?, ?)');
-					$req2->execute($d2);
-					$mm = 0;
-					$nbmusic = count($music[$k]['title']);
-					foreach($music[$k]['title'] as $kk => $vv){
-						if(($vv!=null or strlen($vv) == 1) and ($mm != $nbmusic-1))
-						{
-							$d3 = array($vv, $albumid);
-							$req3 = $DB->prepare('INSERT INTO '.BDNAME.'.music (Title, Album_id) VALUES (?, ?)');
-							$req3->execute($d3);
-						}
-						$mm++;
-					}				
-				}
+				$i ++;
 			}
-			catch(PDOException $e){
-				echo 'pas de connection';
+			$nb = $i;
+			$nbalbum = $j;
+			fclose($fic);
+			
+			$artist = array($firstname, $lastname);
+			$req0 = $DB->prepare('INSERT INTO '.BDNAME.'.artist (Firstname, Lastname) VALUES (?, ?)');
+			$req0->execute($artist);
+			$artistid = $DB->lastInsertId();
+			
+			for($k=1 ; $k <= $nbalbum ; $k++)
+			{
+				$req1 = $DB->prepare('INSERT INTO '.BDNAME.'.album (Title, Releasedate) VALUES (:title, :date)');
+				$req1->execute(array(
+					'title' => $data[$k]['title'],
+					'date' => date('Y-m-d', strtotime($data[$k]['Releasedate']))
+					));
+				$albumid = $DB->lastInsertId();
+				
+				$d2 = array($albumid, $artistid);
+				$req2 = $DB->prepare('INSERT INTO '.BDNAME.'.album_artist (album_id, artist_id) VALUES (?, ?)');
+				$req2->execute($d2);
+				$mm = 0;
+				$nbmusic = count($music[$k]['title']);
+				foreach($music[$k]['title'] as $kk => $vv){
+					if(($vv!=null or strlen($vv) == 1) and ($mm != $nbmusic-1))
+					{
+						$d3 = array($vv, $albumid);
+						$req3 = $DB->prepare('INSERT INTO '.BDNAME.'.music (Title, Album_id) VALUES (?, ?)');
+						$req3->execute($d3);
+					}
+					$mm++;
+				}				
 			}
-		//} else {
-			//$this->paramConnect();
-		//}
+		}
+		catch(PDOException $e){
+			echo 'pas de connection';
+		}
 	}
 	
 	private function reqCreatBdd()

@@ -7,7 +7,7 @@
     </div>
 	
 	
-<div class="container">
+<div class="container"><?php echo realpath('chemin.php'); ?>
 	<div class="row">
 		<form method="post" action="recherche" class="form-horizontal">
 			<div class="form-group">
@@ -23,7 +23,7 @@
 			</div>
 		</form>
 	</div>
-	<?php if(isset($_POST) and !empty($_POST)){ ?>	
+	<?php if(isset($_POST['find']) and $_POST['find'] != ''){ ?>	
 		<?php if(isset($album) and !empty($album)){ ?>
 			<h4>Le mot <b><?php echo $_POST['find'] ?></b> est présent sur le titre d'un album</h4>
 			<?php foreach($album as $a){ ?>
@@ -51,5 +51,7 @@
 		<?php if(empty($music) and empty($album)){ ?>
 			<h4>Aucun résultat pour la recherche du mot  <b><?php echo $_POST['find'] ?></b></h4>
 		<?php } ?>
+	<?php } else { ?>
+	<h4>Vous n'avez saisi aucun mot</h4>
 	<?php } ?>
 </div>

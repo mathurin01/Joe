@@ -1,4 +1,11 @@
 <?php
+
+/*
+*	Classe Stat, héritant de la classe Model
+*	Ne contient pas de Getters et Setters car cette classe n'est liée à aucune table
+*	contient un fonction recherchant les morceaux publiés dans différents albums
+*/
+
 class Stat extends model
 {	
 	public function getSameAlbum()

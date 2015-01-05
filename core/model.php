@@ -1,4 +1,11 @@
 <?php
+
+/*
+*	Classe Model
+*	Permet de gérer les requètes communes à chaque classe (read, save et find)
+* 	Quelques requètes 
+*/
+
 class Model{
 
 	public $table;
@@ -15,10 +22,6 @@ class Model{
 			print_r($d);
 			echo '</pre>';
 		}
-		//$data = mysql_fetch_assoc($req);
-		//foreach($data as $k => $v){
-		//	$this->$k = $v;
-		//}
 	}
 
 	public function save($data){
@@ -47,7 +50,6 @@ class Model{
 			$sql .= ")";
 			echo $sql;
 		}
-		//mysql_query($sql) or die(mysql_error("<br/> => ".mysql_query()));
 		$connect = new Connect();
 		$DB = $connect->Connect();
 		$req = $DB->query($sql);
@@ -56,55 +58,6 @@ class Model{
 		} else {
 			$this->id = $data["id"];
 		}
-	}
-	
-	public function findFieldAlbum($field)
-	{		
-		$sql = "SELECT * FROM Album WHERE Title LIKE '%$field%'";
-		$connect = new Connect();
-		$DB = $connect->Connect();
-		$req = $DB->query($sql);
-		$db = array();		
-		while($d = $req->fetch(PDO::FETCH_ASSOC)){
-			$db[] = $d;			
-		}		
-		return $db;
-	}
-	
-	public function findFieldMusic($field)
-	{		
-		$sql = "
-			SELECT m.Title as music, a.Title, a.Releasedate
-			FROM music m 
-			INNER JOIN album a 
-			ON m.Album_id = a.id 
-			WHERE m.Title LIKE '%$field%' 
-			ORDER BY music ASC";
-			
-			/* 
-			
-			*/
-		$connect = new Connect();
-		$DB = $connect->Connect();
-		$req = $DB->query($sql);
-		$db = array();		
-		while($d = $req->fetch(PDO::FETCH_ASSOC)){
-			$db[] = $d;			
-		}		
-		return $db;
-	}
-	
-	public function findDate($date)
-	{		
-		$sql = "SELECT * FROM ".$table." WHERE ReleaseDate LIKE '%$date%'";
-		$connect = new Connect();
-		$DB = $connect->Connect();
-		$req = $DB->query($sql);
-		$db = array();		
-		while($d = $req->fetch(PDO::FETCH_ASSOC)){
-			$db[] = $d;			
-		}		
-		return $db;
 	}
 	
 	public function find($data = array()){

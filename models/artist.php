@@ -1,4 +1,10 @@
 <?php
+
+/*
+*	Classe Artist, héritant de la classe Model
+*	Contient les Getters et Setters de la table correspondante
+*/
+
 class Artist extends Model {
 
 	var $table = 'artist';
